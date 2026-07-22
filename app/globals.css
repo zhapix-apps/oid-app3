@@ -1,0 +1,182 @@
+/* stylelint-disable at-rule-no-unknown */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* stylelint-enable at-rule-no-unknown */
+
+:root {
+  --primary: #2563eb;
+  --secondary: #60a5fa;
+  --accent: #38bdf8;
+  --bg: #f8fafc;
+  --glass: rgba(255, 255, 255, 0.7);
+  --glass-strong: rgba(255, 255, 255, 0.86);
+  --text: #0f172a;
+  --text-soft: #475569;
+  --success: #10b981;
+  --border: #e2e8f0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+.font-display {
+  font-family: var(--font-jakarta), var(--font-inter), sans-serif;
+}
+
+.grad-text {
+  background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-strong {
+  background: var(--glass-strong);
+  backdrop-filter: blur(24px) saturate(160%);
+  -webkit-backdrop-filter: blur(24px) saturate(160%);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+}
+
+.glow-blue {
+  box-shadow: 0 20px 60px -15px rgba(37, 99, 235, 0.35);
+}
+
+.glow-blue-lg {
+  box-shadow: 0 30px 90px -20px rgba(37, 99, 235, 0.45);
+}
+
+.btn-primary {
+  background: linear-gradient(90deg, var(--primary) 0%, #3b82f6 50%, var(--accent) 100%);
+  background-size: 200% 100%;
+  background-position: 0% 0%;
+  color: white;
+  transition: background-position 0.5s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 12px 30px -8px rgba(37, 99, 235, 0.55);
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary:hover {
+  background-position: 100% 0%;
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px -8px rgba(37, 99, 235, 0.6);
+}
+.btn-primary:active {
+  transform: translateY(0px) scale(0.98);
+}
+
+.ripple-span {
+  position: absolute;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.55);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  animation: ripple-expand 0.7s ease-out forwards;
+}
+@keyframes ripple-expand {
+  from {
+    width: 0px;
+    height: 0px;
+    opacity: 0.55;
+  }
+  to {
+    width: 380px;
+    height: 380px;
+    opacity: 0;
+  }
+}
+
+.card-hover {
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.card-hover:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 30px 70px -20px rgba(37, 99, 235, 0.3);
+  border-color: rgba(37, 99, 235, 0.35);
+}
+
+.sweep {
+  position: relative;
+  overflow: hidden;
+}
+.sweep::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(100deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: skewX(-20deg);
+  transition: left 0.8s ease;
+}
+.sweep:hover::before {
+  left: 150%;
+}
+
+.mesh-bg {
+  background: radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.16), transparent 42%),
+    radial-gradient(circle at 85% 15%, rgba(56, 189, 248, 0.18), transparent 40%),
+    radial-gradient(circle at 50% 90%, rgba(96, 165, 250, 0.14), transparent 45%);
+}
+
+.marquee-track {
+  animation: marquee 34s linear infinite;
+}
+.marquee-wrap:hover .marquee-track {
+  animation-play-state: paused;
+}
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.accordion-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.accordion-panel.open {
+  grid-template-rows: 1fr;
+}
+.accordion-panel > div {
+  overflow: hidden;
+}
+
+.tilt-card {
+  transition: transform 0.15s ease-out;
+  transform-style: preserve-3d;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2.5px solid var(--primary);
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
